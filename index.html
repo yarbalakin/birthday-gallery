@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday, Настя! — Выбери вариант</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: #111;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    padding: 30px;
+    min-height: 100vh;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .card-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .card-body {
+    padding: 14px 16px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .card-desc {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.4;
+  }
+  .card-tag {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 3px 10px;
+    background: #333;
+    border-radius: 20px;
+    font-size: 10px;
+    color: #aaa;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #555;
+    font-size: 12px;
+  }
+
+  /* Lightbox */
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    overflow-y: auto;
+    cursor: zoom-out;
+  }
+  .overlay.active { display: flex; }
+  .overlay img {
+    max-width: 90%;
+    max-height: none;
+    border-radius: 8px;
+    box-shadow: 0 0 60px rgba(0,0,0,0.5);
+    cursor: default;
+  }
+  .overlay-close {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10000;
+    font-family: sans-serif;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .overlay-close:hover { opacity: 1; }
+  .overlay-num {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #888;
+    font-size: 13px;
+    z-index: 10000;
+  }
+</style>
+</head>
+<body>
+
+<h1>Happy Birthday, Настя!</h1>
+<p class="subtitle">10 вариантов поздравительного постера. Кликни, чтобы рассмотреть.</p>
+
+<div class="grid" id="grid"></div>
+
+<div class="footer">Подарок для Насти от Сони</div>
+
+<div class="overlay" id="overlay" onclick="closeLightbox(event)">
+  <span class="overlay-close" onclick="closeLightbox(event)">&times;</span>
+  <img id="overlay-img" src="" alt="">
+  <div class="overlay-num" id="overlay-num"></div>
+</div>
+
+<script>
+var variants = [
+  { file: "birthday-post.png", title: "The Birthday Post v1", desc: "Газетный стиль. Фото сверху, текст в колонках снизу.", tag: "Газета" },
+  { file: "birthday-post-v2.png", title: "The Birthday Post v2", desc: "Газетная верстка. Фото и текст перемешаны как в настоящей газете.", tag: "Газета" },
+  { file: "birthday-collage.png", title: "Collage Poster", desc: "Коллаж с цитатой. Сетка фото + подпись.", tag: "Коллаж" },
+  { file: "birthday-letter.png", title: "Love Letter", desc: "Рукописное письмо на линованной бумаге. Полароид-фото вставками.", tag: "Письмо" },
+  { file: "birthday-instagram.png", title: "Instagram Story", desc: "Сторис-стиль. Фото с текстом, мини-фото и стикер.", tag: "Instagram" },
+  { file: "birthday-scrapbook.png", title: "Scrapbook", desc: "Скрапбук. Полароид-фото, стикеры, записки на листочках.", tag: "Скрапбук" },
+  { file: "birthday-photobooth.png", title: "Photo Booth", desc: "Фото-полоска + открытка с текстом.", tag: "Фотобудка" },
+  { file: "birthday-magazine-v2.png", title: "Magazine Spread", desc: "Журнальный разворот. Фото слева, полный текст справа.", tag: "Журнал" },
+  { file: "birthday-cinema.png", title: "Birthday World Tour", desc: "Концертный постер. Таймлайн жизни в стиле тур-афиши.", tag: "Концерт" },
+  { file: "birthday-vintage.png", title: "Vintage Postcard", desc: "Винтажная открытка. Штемпель, марка, сепия.", tag: "Винтаж" }
+];
+
+var grid = document.getElementById("grid");
+variants.forEach(function(v, i) {
+  var card = document.createElement("div");
+  card.className = "card";
+  card.onclick = function() { openLightbox(i); };
+  card.innerHTML =
+    '<img class="card-img" src="img/' + v.file + '" alt="' + v.title + '">' +
+    '<div class="card-body">' +
+      '<div class="card-title">' + v.title + '</div>' +
+      '<div class="card-desc">' + v.desc + '</div>' +
+      '<span class="card-tag">' + v.tag + '</span>' +
+    '</div>';
+  grid.appendChild(card);
+});
+
+function openLightbox(idx) {
+  var v = variants[idx];
+  document.getElementById("overlay-img").src = "img/" + v.file;
+  document.getElementById("overlay-num").textContent = v.title + " (" + (idx + 1) + " из " + variants.length + ")";
+  document.getElementById("overlay").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox(e) {
+  if (e.target.tagName === "IMG") return;
+  document.getElementById("overlay").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "";
+  }
+});
+</script>
+
+</body>
+</html>
