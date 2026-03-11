@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Vintage Postcard — Настя</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital@0;1&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#8b7d6b; display:flex; justify-content:center; padding:20px; }
+  .postcard {
+    width: 620px;
+    background: #fdf8ef;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  }
+  /* Aged texture */
+  .postcard::before {
+    content: '';
+    position: absolute; top:0;left:0;right:0;bottom:0;
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(139,90,43,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(139,90,43,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 30%, rgba(139,90,43,0.06) 0%, transparent 30%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .vintage-border {
+    position: absolute; top:6px;left:6px;right:6px;bottom:6px;
+    border: 1px solid #d4c4a4;
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  /* === PHOTO SECTION === */
+  .photo-section {
+    position: relative;
+    height: 340px;
+    overflow: hidden;
+  }
+  .main-photo {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+    filter: sepia(35%) contrast(1.05) brightness(0.95);
+    display: block;
+  }
+  .photo-overlay {
+    position: absolute; top:0;left:0;right:0;bottom:0;
+    background: linear-gradient(180deg, transparent 40%, rgba(253,248,239,0.4) 80%, #fdf8ef 100%);
+  }
+  /* Corner photos */
+  .corner-photo {
+    position: absolute;
+    background: #fff;
+    padding: 4px 4px 18px;
+    box-shadow: 2px 3px 12px rgba(0,0,0,0.25);
+    z-index: 3;
+  }
+  .corner-photo img {
+    display: block;
+    filter: sepia(40%) contrast(1.1);
+  }
+  .corner-photo .cp-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 10px;
+    color: #8a7a6a;
+    text-align: center;
+    margin-top: 2px;
+  }
+  .cp1 {
+    bottom: 20px; left: 16px;
+    transform: rotate(-4deg);
+  }
+  .cp1 img { width: 100px; height: 75px; object-fit: cover; object-position: center 20%; }
+  .cp2 {
+    bottom: 30px; right: 16px;
+    transform: rotate(3deg);
+  }
+  .cp2 img { width: 90px; height: 75px; object-fit: cover; object-position: center 25%; }
+  /* Stamp & postmark on photo */
+  .stamp-area {
+    position: absolute;
+    top: 12px; right: 16px;
+    width: 65px; height: 80px;
+    border: 2px dashed rgba(201,184,154,0.7);
+    overflow: hidden;
+    z-index: 3;
+    background: rgba(253,248,239,0.3);
+    backdrop-filter: blur(2px);
+  }
+  .stamp-area img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    filter: sepia(50%) contrast(1.2);
+  }
+  .postmark {
+    position: absolute; top: 8px; right: 90px;
+    width: 75px; height: 75px;
+    border: 2px solid rgba(180,60,60,0.35);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    transform: rotate(-12deg);
+    z-index: 3;
+    background: rgba(253,248,239,0.15);
+    backdrop-filter: blur(1px);
+  }
+  .postmark-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(180,60,60,0.55);
+    text-align: center;
+    line-height: 1.3;
+  }
+  .postmark-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(180,60,60,0.55);
+  }
+
+  /* === TEXT SECTION === */
+  .text-section {
+    padding: 20px 36px 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .greeting {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: #5a3a1a;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .greeting-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #a08060;
+    margin-bottom: 14px;
+  }
+  .dashed-rule {
+    border-top: 1px dashed #d4c4a4;
+    margin-bottom: 12px;
+  }
+  .body-text {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: #6a5a4a;
+    column-count: 2;
+    column-gap: 24px;
+    column-rule: 1px dashed #e4d8c4;
+    margin-bottom: 12px;
+  }
+  .body-text p { margin-bottom: 8px; }
+  .pull-quote {
+    column-span: all;
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
+    color: #b44040;
+    text-align: center;
+    padding: 8px 0;
+    margin: 4px 0 8px;
+    border-top: 1px solid #d4c4a4;
+    border-bottom: 1px solid #d4c4a4;
+  }
+  .sign-off {
+    font-family: 'Great Vibes', cursive;
+    font-size: 24px;
+    color: #b44040;
+    text-align: right;
+    margin-bottom: 12px;
+  }
+  /* Graffiti strip */
+  .graffiti-mini {
+    display: block;
+    width: 220px;
+    height: 50px;
+    object-fit: cover;
+    object-position: center 15%;
+    filter: sepia(40%) grayscale(80%) contrast(1.4);
+    margin: 0 auto 10px;
+    border: 1px solid #d4c4a4;
+  }
+  /* Address lines */
+  .address-lines {
+    border-top: 1px solid #d4c4a4;
+    padding-top: 8px;
+  }
+  .address-line {
+    border-bottom: 1px solid #e4d8c4;
+    height: 20px;
+    margin-bottom: 1px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    color: #8a7a6a;
+    padding-left: 4px;
+    line-height: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .address-line .al-label {
+    font-weight: 700;
+    color: #7a6a5a;
+  }
+  .footer-vintage {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9px;
+    color: #c4b4a4;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 10px;
+  }
+  @media print {
+    body { background: white; padding: 0; }
+    .postcard { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:12px;left:12px;z-index:9999;background:rgba(0,0,0,0.7);color:#fff;text-decoration:none;padding:8px 16px;border-radius:8px;font-family:sans-serif;font-size:13px;backdrop-filter:blur(10px);transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.9)'" onmouseout="this.style.background='rgba(0,0,0,0.7)'">&#8592; Все варианты</a>
+<div class="postcard">
+  <div class="vintage-border"></div>
+
+  <!-- PHOTO SECTION -->
+  <div class="photo-section">
+    <img src="photos/photo2.jpg" class="main-photo" alt="">
+    <div class="photo-overlay"></div>
+
+    <!-- Stamp & postmark -->
+    <div class="stamp-area">
+      <img src="photos/photo6.jpg" alt="">
+    </div>
+    <div class="postmark">
+      <div class="postmark-text">Калининград</div>
+      <div class="postmark-date">03.2026</div>
+      <div class="postmark-text">Happy B-Day</div>
+    </div>
+
+    <!-- Corner polaroids -->
+    <div class="corner-photo cp1">
+      <img src="photos/photo1.jpg" alt="">
+      <div class="cp-text">мы с тобой</div>
+    </div>
+    <div class="corner-photo cp2">
+      <img src="photos/photo5.jpg" alt="">
+      <div class="cp-text">всегда рядом</div>
+    </div>
+  </div>
+
+  <!-- TEXT SECTION -->
+  <div class="text-section">
+    <div class="greeting">С Днём Рождения, Настя!</div>
+    <div class="greeting-sub">Моей лучшей подружке</div>
+    <div class="dashed-rule"></div>
+
+    <div class="body-text">
+      <p>Сегодня особый день, и хочется сказать тебе самые тёплые слова. Вспоминая годы нашей дружбы, понимаю, насколько сильно ты повлияла на мою жизнь, сделала её богаче и прекраснее.</p>
+
+      <p>Помню, как мы мечтали обо всём на свете, сидя допоздна на кухне, смеялись над глупостями и плакали друг другу в плечо. Ты всегда умела поддержать в самый нужный момент.</p>
+
+      <div class="pull-quote">Ты делаешь мой мир теплее и уютнее</div>
+
+      <p>Спасибо за энергию, радость и доброту. За каждую улыбку, за советы, за веру в меня, когда я теряла уверенность. Твоя открытость и душевность навсегда останутся в моём сердце.</p>
+
+      <p>Пусть этот день станет началом нового счастливого года. Живи ярко, смело следуя своему сердцу, оставайся той самой прекрасной подругой!</p>
+    </div>
+
+    <img src="photos/photo3.jpg" class="graffiti-mini" alt="Соня + Настя">
+
+    <div class="sign-off">С любовью, твоя Соня &#10084;</div>
+
+    <div class="address-lines">
+      <div class="address-line">
+        <span class="al-label">Кому:</span> Самой прекрасной Насте
+      </div>
+      <div class="address-line">
+        <span class="al-label">Откуда:</span> Прямо из сердца
+      </div>
+      <div class="address-line">
+        <span class="al-label">Куда:</span> Навсегда в лучшие воспоминания
+      </div>
+    </div>
+
+    <div class="footer-vintage">Vintage Postcard &bull; Соня + Настя &bull; Friends Forever &bull; Est. since childhood</div>
+  </div>
+
+</div>
+
+</body>
+</html>

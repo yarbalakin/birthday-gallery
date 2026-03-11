@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Magazine Spread — Настя</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#1a1a1a; display:flex; justify-content:center; padding:20px; }
+  .spread {
+    width: 850px;
+    display: flex;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  }
+  /* Left page - photos */
+  .page-left {
+    width: 425px;
+    background: #f8f4ec;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+  .photo-row {
+    display: flex;
+    gap: 0;
+  }
+  .photo-row img {
+    flex: 1;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+  }
+  .graffiti-bar {
+    width: 100%;
+    height: 55px;
+    object-fit: cover;
+    object-position: center 18%;
+    display: block;
+    filter: grayscale(100%) contrast(1.4);
+  }
+  .page-left-footer {
+    background: #1a1a1a;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .plf-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    color: #666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  /* Right page - text */
+  .page-right {
+    width: 425px;
+    background: #faf6ee;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .mag-header {
+    margin-bottom: 20px;
+  }
+  .mag-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  .mag-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 38px;
+    color: #1a1a1a;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .mag-subtitle {
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;
+    color: #c0392b;
+    line-height: 1.2;
+  }
+  .mag-divider {
+    width: 60px;
+    height: 2px;
+    background: #c0392b;
+    margin: 14px 0;
+  }
+  .mag-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #3a3a3a;
+    text-align: justify;
+    flex: 1;
+  }
+  .mag-body p { margin-bottom: 10px; }
+  .mag-body p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    float: left;
+    line-height: 0.8;
+    margin-right: 6px;
+    margin-top: 5px;
+    color: #c0392b;
+    font-weight: 900;
+  }
+  .mag-pullquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #c0392b;
+    text-align: center;
+    padding: 12px 0;
+    margin: 8px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    line-height: 1.4;
+  }
+  .mag-sign {
+    text-align: right;
+    font-family: 'Great Vibes', cursive;
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-top: 10px;
+  }
+  .mag-sign .heart { color: #c0392b; }
+  .mag-footer {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    color: #ccc;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    margin-top: 14px;
+  }
+  /* Spine shadow */
+  .page-left::after {
+    content: '';
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: 20px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08));
+    pointer-events: none;
+  }
+  .page-right::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 20px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.06), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  @media print {
+    body { background: white; padding: 0; }
+    .spread { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:12px;left:12px;z-index:9999;background:rgba(0,0,0,0.7);color:#fff;text-decoration:none;padding:8px 16px;border-radius:8px;font-family:sans-serif;font-size:13px;backdrop-filter:blur(10px);transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.9)'" onmouseout="this.style.background='rgba(0,0,0,0.7)'">&#8592; Все варианты</a>
+<div class="spread">
+
+  <!-- Left page: photos -->
+  <div class="page-left">
+    <img src="photos/photo2.jpg" class="hero-img" alt="" style="object-position:center 55%;">
+    <div class="photo-row">
+      <img src="photos/photo1.jpg" alt="" style="object-position:center 20%;">
+      <img src="photos/photo4.jpg" alt="" style="object-position:center 15%;">
+      <img src="photos/photo5.jpg" alt="" style="object-position:center 25%;">
+    </div>
+    <img src="photos/photo3.jpg" class="graffiti-bar" alt="">
+    <div class="page-left-footer">
+      <span class="plf-text">Фоторепортаж</span>
+      <span class="plf-text">Калининград &bull; 2025-2026</span>
+    </div>
+  </div>
+
+  <!-- Right page: text -->
+  <div class="page-right">
+    <div>
+      <div class="mag-header">
+        <div class="mag-label">Специальный выпуск &bull; Март 2026</div>
+        <div class="mag-title">Happy Birthday,<br>Настя!</div>
+        <div class="mag-subtitle">Моей лучшей подружке</div>
+      </div>
+
+      <div class="mag-divider"></div>
+
+      <div class="mag-body">
+        <p>Сегодня особый день, и хочется сказать тебе самые тёплые и сердечные слова благодарности. Вспоминая годы нашей дружбы, понимаю, насколько сильно ты повлияла на мою жизнь, сделала её богаче и прекраснее. Сколько было пережито вместе: радостных моментов, трудностей, первых побед и ошибок...</p>
+
+        <p>Помню, как мы мечтали обо всём на свете, сидя допоздна на кухне, смеялись над глупостями и плакали друг другу в плечо. Ты всегда умела поддержать в самый нужный момент, стать моей опорой и источником вдохновения.</p>
+      </div>
+
+      <div class="mag-pullquote">
+        &laquo;Ты делаешь мой мир теплее и уютнее,<br>и я благодарна судьбе за встречу с тобой&raquo;
+      </div>
+
+      <div class="mag-body">
+        <p>Спасибо за то, что делишься своей энергией, радостью и добротой. За каждую улыбку, за советы, за веру в меня, когда я теряла уверенность. Твоя открытость и душевность навсегда останутся в моём сердце.</p>
+
+        <p>Пусть этот день станет отправной точкой новых свершений. Живи ярко, смело следуя своему сердцу, оставайся той самой прекрасной подругой. Впереди ждёт много счастливых моментов, в которых мы обязательно будем вместе.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="mag-sign">С любовью, Соня <span class="heart">&#10084;</span></div>
+      <div class="mag-footer">Bestie Magazine &bull; Birthday Special &bull; Sonya + Nastya &bull; Friends Forever</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

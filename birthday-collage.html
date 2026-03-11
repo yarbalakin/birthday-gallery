@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Collage Poster — Настя</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;700;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#e8e4dc; display:flex; justify-content:center; padding:20px; }
+  .poster {
+    width: 700px;
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    position: relative;
+  }
+  .quote-top {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .quote-line1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    line-height: 1.3;
+  }
+  .quote-cursive {
+    font-family: 'Great Vibes', cursive;
+    font-size: 42px;
+    color: #c0392b;
+    line-height: 1.1;
+    margin: 2px 0;
+  }
+  .quote-line2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    line-height: 1.3;
+  }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .photo-grid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-grid .span2 {
+    grid-column: span 2;
+    height: 180px;
+  }
+  .message-block {
+    text-align: center;
+    padding: 16px 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 16px;
+  }
+  .message-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 6px;
+  }
+  .bottom-section {
+    text-align: center;
+  }
+  .happy-birthday {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    letter-spacing: 6px;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .name-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    color: #c0392b;
+    line-height: 1.2;
+  }
+  .footer-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 12px;
+  }
+  .heart { color: #c0392b; }
+  @media print {
+    body { background: white; padding: 0; }
+    .poster { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:12px;left:12px;z-index:9999;background:rgba(0,0,0,0.7);color:#fff;text-decoration:none;padding:8px 16px;border-radius:8px;font-family:sans-serif;font-size:13px;backdrop-filter:blur(10px);transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.9)'" onmouseout="this.style.background='rgba(0,0,0,0.7)'">&#8592; Все варианты</a>
+<div class="poster">
+
+  <div class="quote-top">
+    <div class="quote-line1">ПОДРУГ МЫ ВЫБИРАЕМ</div>
+    <div class="quote-cursive">сами</div>
+    <div class="quote-line2">НО ЛУЧШИХ ОСТАВЛЯЕТ</div>
+    <div class="quote-cursive">время</div>
+  </div>
+
+  <div class="photo-grid">
+    <img src="photos/photo1.jpg" alt="" style="object-position:center 20%;">
+    <img src="photos/photo2.jpg" alt="" class="span2" style="object-position:center 65%;">
+    <img src="photos/photo4.jpg" alt="" style="object-position:center 15%;">
+    <img src="photos/photo5.jpg" alt="" style="object-position:center 25%;">
+    <img src="photos/photo6.jpg" alt="" style="object-position:center top;">
+  </div>
+
+  <div class="message-block">
+    <p>Спасибо, что когда-то стала частью моей жизни. Ты делаешь мой мир теплее и уютнее, и я благодарна судьбе за встречу с таким человеком, как ты.</p>
+    <p>Пусть этот день станет началом нового счастливого года. Живи ярко, смело следуя своему сердцу!</p>
+  </div>
+
+  <div class="bottom-section">
+    <div class="happy-birthday">HAPPY BIRTHDAY</div>
+    <div class="name-script">Настя</div>
+    <div class="footer-line">С любовью, Соня <span class="heart">&#10084;</span> Март 2026</div>
+  </div>
+
+</div>
+
+</body>
+</html>

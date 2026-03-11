@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday, Настя! — Выбери вариант</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Настя!</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -37,18 +38,28 @@
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
   }
   .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0,0,0,0.4);
   }
-  .card-img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    object-position: top center;
+  .card-link {
     display: block;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  .card-preview-wrap {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+    background: #222;
+  }
+  .card-preview {
+    border: none;
+    pointer-events: none;
+    transform-origin: top left;
   }
   .card-body {
     padding: 14px 16px;
@@ -80,50 +91,6 @@
     color: #555;
     font-size: 12px;
   }
-
-  /* Lightbox */
-  .overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 9999;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    overflow-y: auto;
-    cursor: zoom-out;
-  }
-  .overlay.active { display: flex; }
-  .overlay img {
-    max-width: 90%;
-    max-height: none;
-    border-radius: 8px;
-    box-shadow: 0 0 60px rgba(0,0,0,0.5);
-    cursor: default;
-  }
-  .overlay-close {
-    position: fixed;
-    top: 16px;
-    right: 20px;
-    font-size: 32px;
-    color: #fff;
-    cursor: pointer;
-    z-index: 10000;
-    font-family: sans-serif;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-  }
-  .overlay-close:hover { opacity: 1; }
-  .overlay-num {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #888;
-    font-size: 13px;
-    z-index: 10000;
-  }
 </style>
 </head>
 <body>
@@ -131,66 +98,141 @@
 <h1>Happy Birthday, Настя!</h1>
 <p class="subtitle">10 вариантов поздравительного постера. Кликни, чтобы рассмотреть.</p>
 
-<div class="grid" id="grid"></div>
+<div class="grid">
 
-<div class="footer">Подарок для Насти от Сони</div>
+  <div class="card">
+    <a class="card-link" href="birthday-post.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-post.html" class="card-preview" style="width:800px; height:1200px; transform:scale(0.38);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">The Birthday Post v1</div>
+        <div class="card-desc">Газетный стиль. Фото сверху, текст в колонках снизу.</div>
+        <span class="card-tag">Газета</span>
+      </div>
+    </a>
+  </div>
 
-<div class="overlay" id="overlay" onclick="closeLightbox(event)">
-  <span class="overlay-close" onclick="closeLightbox(event)">&times;</span>
-  <img id="overlay-img" src="" alt="">
-  <div class="overlay-num" id="overlay-num"></div>
+  <div class="card">
+    <a class="card-link" href="birthday-post-v2.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-post-v2.html" class="card-preview" style="width:850px; height:1400px; transform:scale(0.35);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">The Birthday Post v2</div>
+        <div class="card-desc">Газетная верстка. Фото и текст перемешаны как в настоящей газете.</div>
+        <span class="card-tag">Газета</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a class="card-link" href="birthday-vintage.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-vintage.html" class="card-preview" style="width:620px; height:950px; transform:scale(0.49);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Vintage Postcard</div>
+        <div class="card-desc">Винтажная открытка. Штемпель, марка, сепия, рукописный текст.</div>
+        <span class="card-tag">Винтаж</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a class="card-link" href="birthday-collage.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-collage.html" class="card-preview" style="width:700px; height:1000px; transform:scale(0.43);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Collage Poster</div>
+        <div class="card-desc">Коллаж с цитатой. Сетка фото + подпись.</div>
+        <span class="card-tag">Коллаж</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a class="card-link" href="birthday-letter.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-letter.html" class="card-preview" style="width:650px; height:1100px; transform:scale(0.46);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Love Letter</div>
+        <div class="card-desc">Рукописное письмо на линованной бумаге. Полароид-фото вставками.</div>
+        <span class="card-tag">Письмо</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a class="card-link" href="birthday-instagram.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-instagram.html" class="card-preview" style="width:444px; height:900px; transform:scale(0.68);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Instagram Story</div>
+        <div class="card-desc">Сторис-стиль. Фото с текстом, мини-фото и стикер.</div>
+        <span class="card-tag">Instagram</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a class="card-link" href="birthday-scrapbook.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-scrapbook.html" class="card-preview" style="width:800px; height:950px; transform:scale(0.38);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Scrapbook</div>
+        <div class="card-desc">Скрапбук. Полароид-фото, стикеры, записки на листочках.</div>
+        <span class="card-tag">Скрапбук</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a class="card-link" href="birthday-photobooth.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-photobooth.html" class="card-preview" style="width:660px; height:900px; transform:scale(0.46);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Photo Booth</div>
+        <div class="card-desc">Фото-полоска + открытка с текстом.</div>
+        <span class="card-tag">Фотобудка</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a class="card-link" href="birthday-magazine-v2.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-magazine-v2.html" class="card-preview" style="width:850px; height:620px; transform:scale(0.35);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Magazine Spread</div>
+        <div class="card-desc">Журнальный разворот. Фото слева, полный текст справа.</div>
+        <span class="card-tag">Журнал</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a class="card-link" href="birthday-cinema.html">
+      <div class="card-preview-wrap">
+        <iframe src="birthday-cinema.html" class="card-preview" style="width:550px; height:950px; transform:scale(0.55);"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Birthday World Tour</div>
+        <div class="card-desc">Концертный постер. Таймлайн жизни в стиле тур-афиши.</div>
+        <span class="card-tag">Концерт</span>
+      </div>
+    </a>
+  </div>
+
 </div>
 
-<script>
-var variants = [
-  { file: "birthday-post.png", title: "The Birthday Post v1", desc: "Газетный стиль. Фото сверху, текст в колонках снизу.", tag: "Газета" },
-  { file: "birthday-post-v2.png", title: "The Birthday Post v2", desc: "Газетная верстка. Фото и текст перемешаны как в настоящей газете.", tag: "Газета" },
-  { file: "birthday-vintage.png", title: "Vintage Postcard", desc: "Винтажная открытка. Штемпель, марка, сепия.", tag: "Винтаж" },
-  { file: "birthday-collage.png", title: "Collage Poster", desc: "Коллаж с цитатой. Сетка фото + подпись.", tag: "Коллаж" },
-  { file: "birthday-letter.png", title: "Love Letter", desc: "Рукописное письмо на линованной бумаге. Полароид-фото вставками.", tag: "Письмо" },
-  { file: "birthday-instagram.png", title: "Instagram Story", desc: "Сторис-стиль. Фото с текстом, мини-фото и стикер.", tag: "Instagram" },
-  { file: "birthday-scrapbook.png", title: "Scrapbook", desc: "Скрапбук. Полароид-фото, стикеры, записки на листочках.", tag: "Скрапбук" },
-  { file: "birthday-photobooth.png", title: "Photo Booth", desc: "Фото-полоска + открытка с текстом.", tag: "Фотобудка" },
-  { file: "birthday-magazine-v2.png", title: "Magazine Spread", desc: "Журнальный разворот. Фото слева, полный текст справа.", tag: "Журнал" },
-  { file: "birthday-cinema.png", title: "Birthday World Tour", desc: "Концертный постер. Таймлайн жизни в стиле тур-афиши.", tag: "Концерт" }
-];
-
-var grid = document.getElementById("grid");
-variants.forEach(function(v, i) {
-  var card = document.createElement("div");
-  card.className = "card";
-  card.onclick = function() { openLightbox(i); };
-  card.innerHTML =
-    '<img class="card-img" src="img/' + v.file + '" alt="' + v.title + '">' +
-    '<div class="card-body">' +
-      '<div class="card-title">' + v.title + '</div>' +
-      '<div class="card-desc">' + v.desc + '</div>' +
-      '<span class="card-tag">' + v.tag + '</span>' +
-    '</div>';
-  grid.appendChild(card);
-});
-
-function openLightbox(idx) {
-  var v = variants[idx];
-  document.getElementById("overlay-img").src = "img/" + v.file;
-  document.getElementById("overlay-num").textContent = v.title + " (" + (idx + 1) + " из " + variants.length + ")";
-  document.getElementById("overlay").classList.add("active");
-  document.body.style.overflow = "hidden";
-}
-
-function closeLightbox(e) {
-  if (e.target.tagName === "IMG") return;
-  document.getElementById("overlay").classList.remove("active");
-  document.body.style.overflow = "";
-}
-
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") {
-    document.getElementById("overlay").classList.remove("active");
-    document.body.style.overflow = "";
-  }
-});
-</script>
+<div class="footer">Подарок для Насти от Сони</div>
 
 </body>
 </html>

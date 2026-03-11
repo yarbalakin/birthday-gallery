@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Scrapbook — Настя</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&family=Montserrat:wght@400;700;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#d4c5a9; display:flex; justify-content:center; padding:20px; }
+  .board {
+    width: 800px; min-height: 900px;
+    background: #f5efe0;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    /* Craft paper texture */
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.01) 3px, rgba(0,0,0,0.01) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.01) 3px, rgba(0,0,0,0.01) 4px);
+  }
+  .main-title {
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 52px;
+    font-weight: 700;
+    color: #c0392b;
+    transform: rotate(-2deg);
+    margin-bottom: 8px;
+  }
+  .sub-title {
+    text-align: center;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  /* Polaroid photos */
+  .polaroid {
+    background: #fff;
+    padding: 10px 10px 36px;
+    box-shadow: 2px 3px 12px rgba(0,0,0,0.15);
+    display: inline-block;
+    position: absolute;
+  }
+  .polaroid img {
+    width: 100%; display: block;
+    filter: saturate(0.85) contrast(1.05);
+  }
+  .polaroid .caption {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #555;
+    text-align: center;
+    margin-top: 6px;
+    position: absolute;
+    bottom: 8px; left: 10px; right: 10px;
+  }
+  /* Specific positions */
+  .p1 { width: 240px; top: 110px; left: 30px; transform: rotate(-4deg); z-index:2; }
+  .p2 { width: 200px; top: 100px; left: 290px; transform: rotate(2deg); z-index:3; }
+  .p3 { width: 220px; top: 120px; right: 30px; transform: rotate(-1deg); z-index:1; }
+  .p4 { width: 260px; top: 390px; left: 50px; transform: rotate(3deg); z-index:2; }
+  .p5 { width: 210px; top: 410px; right: 60px; transform: rotate(-3deg); z-index:3; }
+
+  /* Stickers & decorations */
+  .sticker {
+    position: absolute;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    transform: rotate(-5deg);
+  }
+  .tape {
+    position: absolute;
+    width: 80px; height: 22px;
+    background: rgba(255,228,181,0.7);
+    transform: rotate(-10deg);
+    z-index: 10;
+  }
+  .heart-sticker {
+    position: absolute;
+    font-size: 36px;
+    color: #e74c3c;
+    opacity: 0.8;
+    z-index: 10;
+  }
+  /* Text notes */
+  .note {
+    position: absolute;
+    background: #fffacd;
+    padding: 12px 16px;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    transform: rotate(1deg);
+  }
+  .note-pink { background: #fce4ec; }
+  .note-blue { background: #e3f2fd; }
+  .note-green { background: #e8f5e9; }
+
+  .graffiti-strip {
+    position: absolute;
+    width: 180px;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    z-index: 5;
+  }
+  .graffiti-strip img {
+    width: 100%; height: 50px;
+    object-fit: cover; object-position: center 18%;
+    filter: grayscale(100%) contrast(1.4);
+    border: 2px solid #fff;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+  }
+  .graffiti-caption {
+    font-family: 'Caveat', cursive;
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    margin-top: 2px;
+  }
+  .bottom-text {
+    position: absolute;
+    bottom: 95px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    font-weight: 700;
+    color: #c0392b;
+  }
+  .footer-line {
+    position: absolute;
+    bottom: 10px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 12px;
+    color: #bbb;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:12px;left:12px;z-index:9999;background:rgba(0,0,0,0.7);color:#fff;text-decoration:none;padding:8px 16px;border-radius:8px;font-family:sans-serif;font-size:13px;backdrop-filter:blur(10px);transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.9)'" onmouseout="this.style.background='rgba(0,0,0,0.7)'">← Все варианты</a>
+<div class="board">
+  <div class="main-title">Happy Birthday, Настя!</div>
+  <div class="sub-title">Скрапбук нашей дружбы &bull; Специальный выпуск</div>
+
+  <!-- Polaroid photos -->
+  <div class="polaroid p1">
+    <img src="photos/photo1.jpg" alt="" style="height:160px; object-fit:cover; object-position:center 20%;">
+    <div class="caption">Лучшее селфи ever</div>
+  </div>
+
+  <div class="polaroid p2">
+    <img src="photos/photo4.jpg" alt="" style="height:160px; object-fit:cover; object-position:center 15%;">
+    <div class="caption">В дороге вместе</div>
+  </div>
+
+  <div class="polaroid p3">
+    <img src="photos/photo6.jpg" alt="" style="height:160px; object-fit:cover; object-position:center top;">
+    <div class="caption">Просто мы</div>
+  </div>
+
+  <div class="polaroid p4">
+    <img src="photos/photo2.jpg" alt="" style="height:180px; object-fit:cover; object-position:center 60%;">
+    <div class="caption">Закат на Балтике</div>
+  </div>
+
+  <div class="polaroid p5">
+    <img src="photos/photo5.jpg" alt="" style="height:160px; object-fit:cover; object-position:center 25%;">
+    <div class="caption">Всегда рядом</div>
+  </div>
+
+  <!-- Tape decorations -->
+  <div class="tape" style="top:108px; left:100px; transform:rotate(-8deg);"></div>
+  <div class="tape" style="top:98px; left:340px; transform:rotate(5deg);"></div>
+  <div class="tape" style="top:388px; left:120px; transform:rotate(-5deg);"></div>
+
+  <!-- Hearts -->
+  <div class="heart-sticker" style="top:310px; left:260px; transform:rotate(15deg);">&#10084;</div>
+  <div class="heart-sticker" style="top:340px; right:120px; transform:rotate(-10deg); font-size:24px;">&#10084;</div>
+  <div class="heart-sticker" style="top:80px; right:180px; transform:rotate(8deg); font-size:20px; color:#e91e63;">&#10084;</div>
+
+  <!-- Sticky notes -->
+  <div class="note note-pink" style="top:320px; left:300px; transform:rotate(-2deg); width:160px; z-index:8;">
+    Спасибо, что делишься своей энергией, радостью и добротой!
+  </div>
+
+  <div class="note note-green" style="top:640px; left:30px; transform:rotate(2deg); width:200px; z-index:8;">
+    Ты всегда умела поддержать в самый нужный момент, стать моей опорой и источником вдохновения.
+  </div>
+
+  <div class="note note-blue" style="top:640px; right:30px; transform:rotate(-1deg); width:200px; z-index:8;">
+    Пусть рядом будут любимые люди, понимающие и поддерживающие тебя. Живи ярко!
+  </div>
+
+  <!-- Graffiti -->
+  <div class="graffiti-strip">
+    <img src="photos/photo3.jpg" alt="Соня + Настя">
+    <div class="graffiti-caption">высечено в камне</div>
+  </div>
+
+  <div class="bottom-text">Люблю тебя всей душой! &#10084;</div>
+  <div class="footer-line">Соня + Настя &bull; Friends Forever</div>
+</div>
+
+</body>
+</html>
